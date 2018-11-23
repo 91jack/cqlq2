@@ -1,0 +1,98 @@
+/*
+ * admin
+ */
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.admin-cont{
+	width: 100%;
+	height: 100%;
+	background: #EEEEEE;
+	background-size: 100% 100%;
+}
+.icon-tit{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 1.65rem;
+}
+.icon-tit img{
+	margin-top: 15.7rem;
+	width: 9.3rem;
+	height: 2.3rem;
+}
+.icon-tit strong{
+	margin-top: 15.7rem;
+	font-weight: bold;
+	color: #19B6E8;
+	font-size: 1.9rem;
+	margin-left: 1.95rem;
+}
+.login-cont{
+	width: 39.8rem;
+	height: 17.55rem;
+	display: flex;
+	margin: auto;
+}
+.login-cont .pic-cont{
+	width: 16.45rem;
+	height: 17.55rem;
+	background:rgba(225,225,225,1);
+	border-radius:0.5rem 0px 0px 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.login-cont .pic-cont img{
+	width: 14.3rem;
+	height: 14.4rem;
+}
+.login-cont .tab{
+	height:17.55rem;
+	background:rgba(255,255,255,1);
+	border-radius:0px 0.5rem 0.5rem 0px;
+	padding: 0 1.9rem;
+}
+.login-cont .tab div{
+	width: 19.45rem;
+	height: 3.15rem;
+	border: 1px solid #00CAB0;
+	display: flex;
+	align-items: center;
+}
+.login-cont .tab .tonext{
+	background: #00CAB0;
+	border: none;
+}
+.login-cont .tab .tonext a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-size: 0.9rem;
+	text-align: center;
+	line-height: 3.15rem;
+	color: #fff;
+}
+.login-cont .tab .user{
+	margin-bottom: 1.1rem;
+	margin-top: 1.55rem;
+}
+.login-cont .tab .pas{
+	margin-bottom: 1.75rem;
+}
+.login-cont .tab img{
+	width: 1.05rem;
+	height: 1.15rem;
+	margin: 0 0.8rem 0 1.1rem;
+}
+.login-cont .tab img.last{
+	width: 0.9rem;
+	height: 1.2rem;
+}
+.login-cont .tab input{
+	border: none;
+	box-shadow: none;
+	font-size: 0.8rem;
+	outline: none;
+}

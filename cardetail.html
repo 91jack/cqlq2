@@ -1,0 +1,276 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>车辆调度-重交沥青搅拌站智慧生产管控系统</title>
+		<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/common.css" />
+	</head>
+
+	<body>
+		<div class="header clearfix">
+			<h2>重交沥青搅拌站智慧生产管控系统</h2>
+			<div class="nav">
+				<a href="index.html">
+					<img src="static/images/icon_home1.png" alt="" />
+					<span>首页</span>
+				</a>
+				<a href="weigh.html">
+					<img src="static/images/icon_chengzhong1.png" alt="" />
+					<span>称重过磅</span>
+				</a>
+				<a href="jiankong.html">
+					<img src="static/images/icon_jiankong1.png" alt="" />
+					<span>生产监控</span>
+				</a>
+				<a href="carmanage.html" class="active">
+					<img src="static/images/icon_car2.png" />
+					<span>车辆调度</span>
+				</a>
+
+				<a href="kucun.html">
+					<img src="static/images/icon_kucun1.png" alt="" />
+					<span>库存盘点</span>
+				</a>
+				<a href="monitor.html">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>视频监控</span>
+				</a>
+				<!--<a href="javascript:;">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>质量管控</span>
+				</a>
+				<a href="javascript:;">
+					<img src="static/images/icon_shiyan1.png" />
+					<span>实验管理</span>
+				</a>-->
+
+				<a id="tongji">
+					<img src="static/images/icon_tongji1.png" />
+					<span>统计分析</span>
+				</a>
+				<ul class="subnav">
+					<li>
+						<a href="producestate.html">生产动态表</a>
+					</li>
+					<li>
+						<a href="producenum.html">生产量分析</a>
+					</li>
+					<li>
+						<a href="javascript:;">核算量分析</a>
+					</li>
+					<li>
+						<a href="xhl.html">消耗量分析</a>
+					</li>
+					<li>
+						<a href="temp.html">温度波动分析</a>
+					</li>
+					<li>
+						<a href="ysb.html">油石比波动分析</a>
+					</li>
+					<li>
+						<a href="yunju.html">运距统计分析</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="container">
+			
+			<div class="car-list car fl">
+				<!--<div class="pro-name">
+					<select id="protect" name="" disabled="disabled">
+						<option value="" selected="selected">项目名称</option>
+					</select>
+				</div>
+				<div class="station-name">
+					<select id="station" name="" disabled="disabled">
+						<option value="" selected="selected">站点名称</option>
+					</select>
+				</div>-->
+				<ul id="carList">
+					<li class="active">车次</li>
+					<li>第1次</li>
+					<li>第2次</li>
+					<li class="active">第3次</li>
+					<li>第4次</li>
+				</ul>
+			</div>
+			<div class="car-map fr" id="map"></div>
+		</div>
+
+		<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/common.js"></script>
+		<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
+		<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/map.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//设置地图初始缩放比例
+			map.setZoom(11);
+			
+		    
+			
+			// 车辆列表
+			ajaxData(carList, {}, function(data) {
+
+				var carStr = '<li class="active" carnum="' + data.list[i].carNo + '">车次</li>';
+				for(var i = 0; i < data.list.length; i++) {
+					carStr += '<li carnum="' + data.list[i].carNo + '">' + data.list[i].carNo + '</li>';
+				}
+
+				$('#carList').html(carStr);
+				
+				//车辆定位时时数据
+				WebSocketFn(gpsUrl,function(req){
+					if(req=='{}' || req=='[]'){
+							return;
+						}
+					var data = JSON.parse(req);
+					console.log(data)
+					if(data.length > 0){
+						map.clearOverlays();
+						
+						// 搅拌站位置
+						var point = new BMap.Point(106.278022,29.682351);
+						var marker = new BMap.Marker(point);  // 创建标注
+						map.addOverlay(marker); 
+						var opts = {
+						  position : point,    // 指定文本标注所在的地理位置
+						  offset   : new BMap.Size(10, -20)    //设置文本偏移量
+						}
+						var label = new BMap.Label("搅拌站", opts);  // 创建文本标注对象
+						label.setStyle({
+							 color : "red",
+							 fontSize : "12px",
+							 height : "20px",
+							 lineHeight : "20px",
+							 fontFamily:"微软雅黑"
+						 });
+						map.addOverlay(label);   
+	
+						// 返程车辆
+						var point = new BMap.Point(106.078022,29.582351);
+						var icon = new BMap.Icon("static/images/icon_car1.png", new BMap.Size(33,21));
+						
+						var marker = new BMap.Marker(point,{icon:icon});  // 创建标注
+						map.addOverlay(marker); 
+						var opts = {
+						  position : point,    // 指定文本标注所在的地理位置
+						  offset   : new BMap.Size(-80, -10)    //设置文本偏移量
+						}
+						var label = new BMap.Label("渝B987456", opts);  // 创建文本标注对象
+						label.setStyle({
+							 color : "red",
+							 fontSize : "12px",
+							 height : "20px",
+							 lineHeight : "20px",
+							 fontFamily:"微软雅黑"
+						 });
+						map.addOverlay(label);   
+						
+						
+				   		for (var i = 0; i < data.length ; i ++) {
+							// 地图标注
+							var lng = data[i].lng;
+							var lat = data[i].lat;
+							var point = new BMap.Point(lng,lat);
+							var opt = {
+								width : 300,     // 信息窗口宽度
+								height: 100,     // 信息窗口高度
+							}
+							var content ='<p style="font-weight:bold">车辆号码：'+ data[i].vno +'</p>'
+									+'<p>mileage:'+ data[i].mileage +'</p>'
+									+'<p>出货时间：'+ data[i].stime+'</p>'
+									+'<p>车辆位置：'+ data[i].location +'</p>'
+									
+							var InfoWindow = new BMap.InfoWindow(content,opt);
+							InfoWindow.enableAutoPan();
+							var label = data[i].vno;
+							var icon = new BMap.Icon("static/images/icon_car.png", new BMap.Size(33,21));
+							addMarker(point,icon,label,InfoWindow);
+							
+							
+				   		}
+					}
+				});
+				
+				
+				
+				//路径回放点击事件
+				$('#carList li').bind('click', function() {
+					var myIcon = "static/images/icon_car.png";
+					var carNum = $(this).attr('carnum');
+					ajaxData(carTrail, {
+						carNo: carNum
+					}, function(data) {
+						if(data.list.length!=0){
+							var last = data.list[data.list.length - 1];
+							// 起点
+							var myP1 = new BMap.Point(data.list[0].lng, data.list[0].lat)
+							// 终点
+							var myP2 = new BMap.Point(last.lng, last.lat)
+							var pts = [];
+	
+							for(var j = 0; j < data.list.length; j++) {
+								var linkLine = {
+									lng: data.list[j].lng,
+									lat: data.list[j].lat
+								}
+								pts.push(linkLine)
+							}
+	
+							var myIcon = new BMap.Icon("static/images/icon_car.png", new BMap.Size(32, 70), { //小车图片
+								//offset: new BMap.Size(0, -5),    //相当于CSS精灵
+								imageOffset: new BMap.Size(0, 0) //图片的偏移量。为了是图片底部中心对准坐标点。
+							});
+							var driving2 = new BMap.DrivingRoute(map, {
+								renderOptions: {
+									map: map,
+									autoViewport: true
+								}
+							}); //驾车实例
+							driving2.search(myP1, myP2); //显示一条公交线路
+							run(myP1, myP2, pts, myIcon);
+						}
+					})
+				})
+			})
+			
+			
+			//路径回放
+			var run = function(myP1, myP2, pts, myIcon) {
+				var driving = new BMap.DrivingRoute(map); //驾车实例
+				driving.search(myP1, myP2);
+				driving.setSearchCompleteCallback(function() {
+					var pts = driving.getResults().getPlan(0).getRoute(0).getPath();    //通过驾车实例，获得一系列点的数组
+					var paths = pts.length; //获得有几个点
+					var carMk = new BMap.Marker(pts[0], {
+						icon: myIcon
+					});
+					map.addOverlay(carMk);
+					i = 0;
+
+					function resetMkPoint(i) {
+						carMk.setPosition(pts[i]);
+											
+						if(i < paths) {
+							setTimeout(function() {
+								i++;
+								resetMkPoint(i);
+							}, 50);
+						}
+					}
+					setTimeout(function(){
+						resetMkPoint(0);
+					},100)
+
+				});
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,402 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>重交沥青搅拌站智慧生产管控系统</title>
+		<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/common.css" />
+		<link href="http://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
+		<script src="http://vjs.zencdn.net/5.19/video.min.js"></script>
+	</head>
+
+	<body>
+				<div class="header clearfix">
+			<h2>重交沥青搅拌站智慧生产管控系统</h2>
+			<div class="nav">
+				<a href="index.html">
+					<img src="static/images/icon_home1.png" alt="" />
+					<span>首页</span>
+				</a>
+				<a href="weigh.html">
+					<img src="static/images/icon_chengzhong1.png" alt="" />
+					<span>称重过磅</span>
+				</a>
+				<a href="jiankong.html" class="active">
+					<img src="static/images/icon_jiankong2.png" alt="" />
+					<span>生产监控</span>
+				</a>
+				<a href="carmanage.html" >
+					<img src="static/images/icon_car1.png" />
+					<span>车辆调度</span>
+				</a>
+
+				<a href="kucun.html">
+					<img src="static/images/icon_kucun1.png" alt="" />
+					<span>库存盘点</span>
+				</a>
+				<a href="monitor.html">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>视频监控</span>
+				</a>
+				<!--<a href="javascript:;">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>质量管控</span>
+				</a>
+				<a href="javascript:;">
+					<img src="static/images/icon_shiyan1.png" />
+					<span>实验管理</span>
+				</a>-->
+
+				<a id="tongji">
+					<img src="static/images/icon_tongji1.png" />
+					<span>统计分析</span>
+				</a>
+				<ul class="subnav">
+					<li>
+						<a href="producestate.html">生产动态表</a>
+					</li>
+					<li>
+						<a href="producenum.html">生产量分析</a>
+					</li>
+					<li>
+						<a href="javascript:;">核算量分析</a>
+					</li>
+					<li>
+						<a href="xhl.html">消耗量分析</a>
+					</li>
+					<li>
+						<a href="temp.html">温度波动分析</a>
+					</li>
+					<li>
+						<a href="ysb.html">油石比波动分析</a>
+					</li>
+					<li>
+						<a href="yunju.html">运距统计分析</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="container">
+			<div class="jiankong-top">
+				<div class="jiankong-top-item type">
+					<img src="static/images/icon_type.png" />
+					<div class="type-inner">
+						<p>
+							<span id="produceType">--</span>
+							<em>生产类型</em>
+						</p>
+					</div>
+				</div>
+				<div class="jiankong-top-item temp">
+					<img src="static/images/icon_temp.png" />
+					<div class="temp-inner">
+						<p>
+							<span id="guliaoTemp">0℃</span>
+							<em>骨料温度</em>
+						</p>
+						<p>
+							<span id="chuliaoTemp">0℃</span>
+							<em>出料温度</em>
+						</p>
+						<p>
+							<span id="zsTemp">0℃</span>
+							<em>尾气温度</em>
+						</p>
+					</div>
+
+				</div>
+				<div class="jiankong-top-item num">
+					<img src="static/images/icon_num.png" />
+					<div class="num-inner">
+						<p>
+							<span id="totalNum">0 吨</span>
+							<em>总产量</em>
+						</p>
+						<p>
+							<span id="curNum">0 吨</span>
+							<em>当前产量</em>
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="jiankong-main">
+				<div class="section fl">
+
+					<div class="section1 fl">
+						<div class="fl ysb">
+							<p class="head">油石比</p>
+							<p class="ratio">--%</p>
+						</div>
+						<div class="fr peibi">
+							<h2 class="head">设计配比</h2>
+							<table class="layui-hide" id="sheji"></table>
+						</div>
+						
+					</div>
+
+					<div class="fl table">
+						<h2>生产看板</h2>
+						<table class="layui-hide" id="produce"></table>
+					</div>
+				</div>
+
+				<div class="fr video">
+					<h2>出料口视频</h2>
+					<div class="clk-video">
+						<video id="my-player" class="video-js" controls preload="auto" poster="http://vjs.zencdn.net/v/oceans.png" data-setup='{}' width="600px" height="600px">
+							<source src='rtmp://118.31.236.94/hls/ch3' type='rtmp/flv' />
+						</video>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/common.js"></script>
+		<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var player = videojs('my-player');
+			var options = {};
+
+			var player = videojs('my-player', options, function onPlayerReady() {
+				videojs.log('Your player is ready!');
+				this.play();
+				this.on('ended', function() {
+					videojs.log('Awww...over so soon?!');
+				});
+			});
+			
+			
+
+
+			var productList=[];
+			// 生产实时数据	
+			WebSocketFn(productUrl, function(data) {
+				if(data == '{}' || data == '[]') {
+					return;
+				}
+				
+				var data = JSON.parse(data)
+				if(data.productList){
+					if(data.change){
+						productList = data.productList;
+					}else{
+						console.log(data.productList)
+						productList = data.productList.concat(productList);
+					}
+				}
+				
+				
+				// 生产类型
+				if(data.productName) {
+					$('#produceType').html(data.productName);
+				}
+
+				//骨料温度
+				$('#guliaoTemp').html();
+				// 出料温度
+				if(data.outTemp==undefined){
+					$('#chuliaoTemp').html("--");
+				}else{
+					$('#chuliaoTemp').html(data.outTemp + '℃');
+				}
+				
+				// 再生温度
+				$('#zsTemp').html();
+
+				// 总产量
+				if(data.productTotal) {
+					$('#totalNum').html(data.productTotal + '吨');
+				}
+				// 当前产量
+				if(data.curTotal) {
+					$('#curNum').html(data.curTotal + '吨');
+				}
+
+				// 油石比
+				if(data.rate) {
+					$('.ratio').html(data.lastItemPB.ysb + '%')
+				}
+
+				if(data.lastItemPB) {
+					layui.use('table', function() {
+						var table = layui.table;
+						// 设计配比
+						table.render({
+							elem: '#sheji',
+							cols: [
+								[ //标题栏
+									{
+										field: 'one',
+										title: '仓1'
+									}, {
+										field: 'two',
+										title: '仓2'
+									}, {
+										field: 'three',
+										title: '仓3'
+									}, {
+										field: 'four',
+										title: '仓4'
+									}, {
+										field: 'five',
+										title: '仓5'
+									}, {
+										field: 'six',
+										title: '新粉1'
+									}, {
+										field: 'seven',
+										title: '新粉2'
+									}, {
+										field: 'eight',
+										title: '沥青'
+									}, {
+										field: 'tjjsl',
+										title: '添加剂'
+									}
+								]
+							],
+							data: [data.lastItemPB],
+							even: true
+						});
+					});
+				}
+
+				// 生产看板
+				if(data.productList&&data.lastItemPB){
+					
+					layui.use('table', function() {
+						var table = layui.table;
+						table.render({
+							elem: '#produce',
+							cols: [
+								[ //标题栏
+									{
+										field: 'dateTime',
+										title: '时间'
+									}, {
+										field: 'guanci',
+										title: '罐次'
+									}, {
+										field: 'one',
+										title: '仓1',
+										templet: function(d) {
+											var fir = (d.one - data.lastItemPB.one) / data.lastItemPB.one;
+											if((fir >= 0.05) || (fir <= -0.05)) {
+												return '<span style="color: red;"> ' + d.one + ' </span>'
+											} else {
+												return '<span> ' + d.one + ' </span>'
+											}
+										},
+										width: 100
+									}, {
+										field: 'two',
+										title: '仓2',
+										templet: function(d) {
+											var fir = (d.two - data.lastItemPB.two) / data.lastItemPB.two;
+											if((fir >= 0.05) || (fir <= -0.05)) {
+												return '<span style="color: red;"> ' + d.two + ' </span>'
+											} else {
+												return '<span> ' + d.two + ' </span>'
+											}
+										},
+										width: 100
+									}, {
+										field: 'three',
+										title: '仓3',
+										templet: function(d) {
+											var fir = (d.three - data.lastItemPB.three) / data.lastItemPB.three;
+											if((fir >= 0.05) || (fir <= -0.05)) {
+												return '<span style="color: red;"> ' + d.three + ' </span>'
+											} else {
+												return '<span> ' + d.three + ' </span>'
+											}
+										},
+										width: 100
+									}, {
+										field: 'four',
+										title: '仓4',
+										templet: function(d) {
+											var fir = (d.four - data.lastItemPB.four) / data.lastItemPB.four;
+											if((fir >= 0.05) || (fir <= -0.05)) {
+												return '<span style="color: red;"> ' + d.four + ' </span>'
+											} else {
+												return '<span> ' + d.four + ' </span>'
+											}
+										},
+										width: 100
+									}, {
+										field: 'five',
+										title: '仓5',
+										templet: function(d) {
+											var fir = (d.five - data.lastItemPB.five) / data.lastItemPB.five;
+											if((fir >= 0.05) || (fir <= -0.05)) {
+												return '<span style="color: red;"> ' + d.five + ' </span>'
+											} else {
+												return '<span> ' + d.five + ' </span>'
+											}
+										},
+										width: 100
+									}, {
+										field: 'six',
+										title: '新粉1',
+										templet: function(d) {
+											var fir = (d.six - data.lastItemPB.six) / data.lastItemPB.six;
+											if((fir >= 0.05) || (fir <= -0.05)) {
+												return '<span style="color: red;"> ' + d.six + ' </span>'
+											} else {
+												return '<span> ' + d.six + ' </span>'
+											}
+										},
+										width: 100
+									}, {
+										field: 'seven',
+										title: '新粉2',
+										templet: function(d) {
+											var fir = (d.seven - data.lastItemPB.seven) / data.lastItemPB.seven;
+											if((fir >= 0.05) || (fir <= -0.05)) {
+												return '<span style="color: red;"> ' + d.seven + ' </span>'
+											} else {
+												return '<span> ' + d.seven + ' </span>'
+											}
+										},
+										width: 100
+									}, {
+										field: 'eight',
+										title: '沥青',
+										templet: function(d) {
+											var fir = (d.eight - data.lastItemPB.eight) / data.lastItemPB.eight;
+											if((fir >= 0.05) || (fir <= -0.05)) {
+												return '<span style="color: red;"> ' + d.eight + ' </span>'
+											} else {
+												return '<span> ' + d.eight + ' </span>'
+											}
+										},
+										width: 100
+									}, {
+										field: 'tjjsl',
+										title: '添加剂'
+									}, {
+										field: 'ysb',
+										title: '油石比'
+									}
+								]
+							],
+							data: productList,
+							even: true
+						});
+					});
+				}
+
+			})
+		</script>
+	</body>
+
+</html>

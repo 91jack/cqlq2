@@ -1,0 +1,404 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>车辆调度-重交沥青搅拌站智慧生产管控系统</title>
+		<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/common.css" />
+		<link href="http://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
+		<script src="http://vjs.zencdn.net/5.19/video.min.js"></script>
+	</head>
+
+	<body>
+		<div class="header clearfix">
+			<h2>重交沥青搅拌站智慧生产管控系统</h2>
+			<div class="nav">
+				<a href="index.html">
+					<img src="static/images/icon_home1.png" alt="" />
+					<span>首页</span>
+				</a>
+				<a href="weigh.html">
+					<img src="static/images/icon_chengzhong1.png" alt="" />
+					<span>称重过磅</span>
+				</a>
+				<a href="jiankong.html">
+					<img src="static/images/icon_jiankong1.png" alt="" />
+					<span>生产监控</span>
+				</a>
+				<a href="carmanage.html">
+					<img src="static/images/icon_car2.png" />
+					<span>车辆调度</span>
+				</a>
+
+				<a href="kucun.html">
+					<img src="static/images/icon_kucun1.png" alt="" />
+					<span>库存盘点</span>
+				</a>
+				<a href="monitor.html" class="active">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>视频监控</span>
+				</a>
+				<!--<a href="javascript:;">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>质量管控</span>
+				</a>
+				<a href="javascript:;">
+					<img src="static/images/icon_shiyan1.png" />
+					<span>实验管理</span>
+				</a>-->
+
+				<a id="tongji">
+					<img src="static/images/icon_tongji1.png" />
+					<span>统计分析</span>
+				</a>
+				<ul class="subnav">
+					<li>
+						<a href="producestate.html">生产动态表</a>
+					</li>
+					<li>
+						<a href="producenum.html">生产量分析</a>
+					</li>
+					<li>
+						<a href="javascript:;">核算量分析</a>
+					</li>
+					<li>
+						<a href="xhl.html">消耗量分析</a>
+					</li>
+					<li>
+						<a href="temp.html">温度波动分析</a>
+					</li>
+					<li>
+						<a href="ysb.html">油石比波动分析</a>
+					</li>
+					<li>
+						<a href="yunju.html">运距统计分析</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="container monitor">
+			
+			<div class="car-list fl">
+				<ul id="carList">
+					<li class="active">站点名称</li>
+					<li class="out-li">渝B123
+						<ul class="inner-ul">
+							<li>视频1</li>
+						</ul>
+						<img class="jiao" src="static/images/tran.png"/>
+					</li>
+				</ul>
+			</div>
+			<div class="monitor-cont fl">
+				<div class="monitor-box">
+					<video
+					    id="player1"
+					    class="video-js"
+					   	controls
+					    preload="auto"
+					    poster="http://vjs.zencdn.net/v/oceans.png"
+					    width="304px" height="294px">
+					    <source src='rtmp://118.31.236.94/hls/ch1' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player2"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch2' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player3"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch3' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player4"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch4' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player5"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch5' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player6"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch6' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player7"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch7' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player8"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch8' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player9"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch9' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player10"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch10' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player11"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch11' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player12"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch12' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player13"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch13' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player14"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch14' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player15"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch15' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player16"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch16' type='rtmp/flv'/> 
+					</video>
+				</div>
+			</div>
+			<div class="monitor-info fr">
+				<div class="info-tip">
+					<span>今日提醒</span>
+				</div>
+				<div class="info-content">
+					<span>12号监控视频模糊!</span>
+				</div>
+			</div>
+		</div>
+
+		<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/common.js"></script>
+		<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('#carList>li').bind('click',function(){
+				if($(this).hasClass('active')){
+					$(this).removeClass('active');
+					$(this).children('.inner-ul').removeClass('active')
+					$(this).children('.jiao').removeClass('active')
+				}else{
+					$('#carList>li').removeClass('active');
+					$(this).children('.jiao').addClass('active')
+					$(this).addClass('active');
+					$(this).children('.inner-ul').addClass('active')
+				}
+			});
+			$('.inner-ul li').bind('click',function(){
+				$(this).parents('.inner-ul').addClass('active');
+//				alert(11111)
+			})
+			
+			var player1 = videojs('player1');
+			var options = {};
+			var player = videojs('player1', options, function onPlayerReady() {
+			    this.play();
+			});
+			
+			var player2 = videojs('player2');
+			var options = {};
+			var player = videojs('player2', options, function onPlayerReady() {
+				this.play();
+			});
+
+			var player3 = videojs('player3');
+			var options = {};
+			var player = videojs('player3', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player4 = videojs('player4');
+			var options = {};
+			var player = videojs('player4', options, function onPlayerReady() {
+				this.play();
+			});
+
+			var player5 = videojs('player5');
+			var options = {};
+			var player = videojs('player5', options, function onPlayerReady() {
+			    this.play();
+			});
+			
+			var player6 = videojs('player6');
+			var options = {};
+			var player = videojs('player6', options, function onPlayerReady() {
+				this.play();
+			});
+
+			var player7 = videojs('player7');
+			var options = {};
+			var player = videojs('player7', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player8 = videojs('player8');
+			var options = {};
+			var player = videojs('player8', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player9 = videojs('player9');
+			var options = {};
+			var player = videojs('player9', options, function onPlayerReady() {
+				this.play();
+			});
+
+			var player10 = videojs('player10');
+			var options = {};
+			var player = videojs('player10', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player11 = videojs('player11');
+			var options = {};
+			var player = videojs('player11', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player12 = videojs('player12');
+			var options = {};
+			var player = videojs('player12', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player13 = videojs('player13');
+			var options = {};
+			var player = videojs('player13', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player14 = videojs('player14');
+			var options = {};
+			var player = videojs('player14', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player15 = videojs('player15');
+			var options = {};
+			var player = videojs('player15', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player16 = videojs('player16');
+			var options = {};
+			var player = videojs('player16', options, function onPlayerReady() {
+				this.play();
+			});
+		</script>
+	</body>
+
+</html>

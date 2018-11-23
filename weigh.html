@@ -1,0 +1,251 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>重交沥青搅拌站智慧生产管控系统</title>
+		<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/common.css" />
+	</head>
+
+	<body>
+		<div class="header clearfix">
+			<h2>重交沥青搅拌站智慧生产管控系统</h2>
+			<div class="nav">
+				<a href="index.html">
+					<img src="static/images/icon_home1.png" alt="" />
+					<span>首页</span>
+				</a>
+				<a href="weigh.html"  class="active">
+					<img src="static/images/icon_chengzhong2.png" alt="" />
+					<span>称重过磅</span>
+				</a>
+				<a href="jiankong.html">
+					<img src="static/images/icon_jiankong1.png" alt="" />
+					<span>生产监控</span>
+				</a>
+				<a href="carmanage.html">
+					<img src="static/images/icon_car1.png" />
+					<span>车辆调度</span>
+				</a>
+
+				<a href="kucun.html">
+					<img src="static/images/icon_kucun1.png" alt="" />
+					<span>库存盘点</span>
+				</a>
+				<a href="monitor.html">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>视频监控</span>
+				</a>
+				<!--<a href="javascript:;">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>质量管控</span>
+				</a>
+				<a href="javascript:;">
+					<img src="static/images/icon_shiyan1.png" />
+					<span>实验管理</span>
+				</a>-->
+
+				<a id="tongji">
+					<img src="static/images/icon_tongji1.png" />
+					<span>统计分析</span>
+				</a>
+				<ul class="subnav">
+					<li>
+						<a href="producestate.html">生产动态表</a>
+					</li>
+					<li>
+						<a href="producenum.html">生产量分析</a>
+					</li>
+					<li>
+						<a href="javascript:;">核算量分析</a>
+					</li>
+					<li>
+						<a href="xhl.html">消耗量分析</a>
+					</li>
+					<li>
+						<a href="temp.html">温度波动分析</a>
+					</li>
+					<li>
+						<a href="ysb.html">油石比波动分析</a>
+					</li>
+					<li>
+						<a href="yunju.html">运距统计分析</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		
+		<div class="container clearfix">
+			<div class="fl weigh-wrap">
+				<div class="weigh-wraptop clearfix">
+					
+					<div class="fl weigh">
+						<div class="weigh-num fl">
+							00.00
+						</div>
+						<div class="weigh-btn fl">
+							称<br/>重
+						</div>
+					</div>
+					<div class="fr">
+						<div class="input-group">
+							<span>车牌号</span>
+							<input type="text" id="carNo"/>
+						</div>
+						<div class="input-group">
+							<span>红外感应</span>
+							<button>主</button>
+							<button>左</button>
+							<button>右</button>
+						</div>
+					</div>
+				</div>
+				<div class="weigh-form clearfix">
+					<div class="input-group">
+						<span>毛重（吨）</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>过磅单号</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>过磅人员</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>皮重（吨）</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>原始皮重（吨）</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>过磅时间</span>
+						<input type="text" />
+					</div>
+					
+					<div class="input-group">
+						<span>净重（吨）</span>
+						<input type="text" />
+					</div>
+					<!-- <div class="input-group">
+						<span>车号</span>
+						<input type="text" />
+					</div> -->
+					<div class="input-group">
+						<span>司机</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>打印净重（吨）</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>工程名称</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>过磅备注</span>
+						<input type="text" />
+					</div>
+					
+					<div class="input-group">
+						<span>设定容量</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>物料单位</span>
+						<input type="text" />
+					</div>
+					
+					<div class="input-group">
+						<span>物料类型</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>自动识别车牌</span>
+						<input type="radio" /> 是
+						<input type="radio" /> 否
+					</div>
+				</div>
+			</div>
+			
+			<div class="fr carnum"></div>
+		</div>
+		
+		<div class="container  clearfix">
+			<div class="tab-btn">
+			<!--	<span>最近称重车辆列表</span>-->
+				<span>最近50条发货过磅信息</span>
+			</div>
+			
+			<table class="layui-hide" id="test"></table>
+			
+		</div>
+		
+		
+<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+var arr = ['沪','浙','苏','皖','鲁','豫',
+			'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+			'0','1','2','3','4','5','6','7','8','9'];
+var spanStr = '';			
+for(var i=0;i<arr.length;i++){
+	spanStr +='<span>'+arr[i]+'</span>'
+}
+$('.carnum').append(spanStr);
+
+
+var dataList = []
+WebSocketFn(weightUrl,function(data){
+	if(data=='{}' || data=='[]'){
+		return;
+	}
+	var data = JSON.parse(data) 
+	console.log(data)
+	if(data.length == 5){
+		$('#carNo').val(data[0].carNumber);
+		for(var i=0;i<data.length;i++){
+			dataList.push(data[i]);
+		}
+	}else{
+		for(var i=0;i<data.length;i++){
+			dataList.unshift(data[i]);
+			$('#carNo').val(data[i].carNumber);
+		}
+	}
+	
+	console.log(dataList)
+	// 生产看板
+	layui.use('table', function(){
+  	var table = layui.table;
+	  table.render({
+	    elem: '#test'
+	    ,cols: [[ //标题栏
+	      {field:'gbdh', title: '过磅单编号'}
+	      ,{field:'ccsj',  title: '称重时间'}
+	      ,{field:'jz', title: '净重（吨）'}
+	      ,{field:'wl', title: '物料类型'}
+	      ,{field:'cph', title: '车牌号'}
+	      ,{field:'xm', title: '工程名称', }
+	      ,{field:'wldw', title: '物料单位'}
+	      ,{field:'bdzt',  title: '运输状态'}
+	    ]]
+	    ,data: data.list
+	    ,even: true
+			,page: true //开启分页
+	  });
+	});
+})
+</script>
+</body>
+</html>

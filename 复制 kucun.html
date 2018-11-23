@@ -1,0 +1,473 @@
+<!doctype html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>重交沥青搅拌站智慧生产管控系统</title>
+	<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css"/>
+	<link rel="stylesheet" type="text/css" href="static/css/common.css" />
+	<link href="http://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
+	<script src="http://vjs.zencdn.net/5.19/video.min.js"></script>
+</head>
+
+<body class="page-kucun">
+			<div class="header clearfix">
+			<h2>重交沥青搅拌站智慧生产管控系统</h2>
+			<div class="nav">
+				<a href="index.html">
+					<img src="static/images/icon_home1.png" alt="" />
+					<span>首页</span>
+				</a>
+				<a href="weigh.html">
+					<img src="static/images/icon_chengzhong1.png" alt="" />
+					<span>称重过磅</span>
+				</a>
+				<a href="jiankong.html">
+					<img src="static/images/icon_jiankong1.png" alt="" />
+					<span>生产监控</span>
+				</a>
+				<a href="carmanage.html">
+					<img src="static/images/icon_car1.png" />
+					<span>车辆调度</span>
+				</a>
+
+				<a href="kucun.html" class="active">
+					<img src="static/images/icon_kucun2.png" alt="" />
+					<span>库存盘点</span>
+				</a>
+				<a href="javascript:;">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>视频监控</span>
+				</a>
+				<!--<a href="javascript:;">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>质量管控</span>
+				</a>
+				<a href="javascript:;">
+					<img src="static/images/icon_shiyan1.png" />
+					<span>实验管理</span>
+				</a>-->
+
+				<a id="tongji">
+					<img src="static/images/icon_tongji1.png" />
+					<span>统计分析</span>
+				</a>
+				<ul class="subnav">
+					<li>
+						<a href="producestate.html">生产动态表</a>
+					</li>
+					<li>
+						<a href="producenum.html">生产量分析</a>
+					</li>
+					<li>
+						<a href="javascript:;">核算量分析</a>
+					</li>
+					<li>
+						<a href="xhl.html">消耗量分析</a>
+					</li>
+					<li>
+						<a href="temp.html">温度波动分析</a>
+					</li>
+					<li>
+						<a href="ysb.html">油石比波动分析</a>
+					</li>
+					<li>
+						<a href="yunju.html">运距统计分析</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+
+	
+	<div class="container">
+		<div class="kucun">
+			<div class="title">
+				原材料库存
+			</div>
+			<div id="kucun" class="kucun-chart" style="text-align: center;width: 91.4rem;height: 11.05rem;">
+				
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="kanban-wrap fl">
+			<div class="kanpan clearfix">
+				<div class="kanban-head">
+					<div class="kanban-name fl">进料看板</div>
+					
+					<div class="filter fl">
+						<span data-index="1">当日</span>
+						<span data-index="2">本周</span>
+						<span data-index="3">本月</span>
+					</div>
+					
+					<div class="time-filter fl">
+						<div class="time">
+							<input type="text" placeholder="开始时间" id="startTime">
+						</div>
+						<div class="time">
+							<input type="text" placeholder="结束时间" id="endTime">
+						</div>
+						<a href="javascript:;"  class="confirm-btn">确定</a>
+					</div>
+					
+					
+				</div>
+				<div class="table clearfix">
+					<table class="layui-hide" id="test"></table>
+				</div>
+			</div>
+			
+			<div class="kanpan clearfix">
+				<div class="kanban-head">
+					<div class="kanban-name fl">消耗看板</div>
+					
+					<div class="filter fl">
+						<span data-index="1">当日</span>
+						<span data-index="2">本周</span>
+						<span data-index="3">本月</span>
+					</div>
+					
+					<div class="time-filter fl">
+						<div class="time">
+							<input type="text" placeholder="开始时间" id="startTime1">
+						</div>
+						<div class="time">
+							<input type="text" placeholder="结束时间" id="endTime1">
+						</div>
+						<a href="javascript:;"  class="confirm-btn">确定</a>
+					</div>
+					
+					
+				</div>
+				<div class="table clearfix">
+					<table class="layui-hide" id="test2"></table>
+				</div>
+			</div>
+		</div>
+		
+		<div class="video-wrap fr">
+			<div class="video">
+				<h2>料仓1</h2>
+				<div class="video-box">
+					<video
+					    id="my-player1"
+					    class="video-js"
+					    controls
+					    preload="auto"
+					    poster="http://vjs.zencdn.net/v/oceans.png"
+					    data-setup='{}' width="300px" height="240px">
+					    <source src='rtmp://118.31.236.94/hls/ch5' type='rtmp/flv'/> 
+					</video>
+				</div>
+			</div>
+			
+			<div class="video">
+				<h2>料仓2</h2>
+				<div class="video-box">
+					<video
+					    id="my-player2"
+					    class="video-js"
+					    controls
+					    preload="auto"
+					    poster="http://vjs.zencdn.net/v/oceans.png"
+					    data-setup='{}' width="300px" height="240px">
+					    <source src='rtmp://118.31.236.94/hls/ch2' type='rtmp/flv'/> 
+					</video>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		
+			
+		
+		
+<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var player1 = videojs('my-player1');
+   	var options = {};
+
+   	var player1 = videojs('my-player1', options, function onPlayerReady() {
+	    videojs.log('Your player is ready!');
+	    this.play();
+	    this.on('ended', function() {
+	       videojs.log('Awww...over so soon?!');
+	    });
+   	});
+   	
+   	var player2 = videojs('my-player2');
+   	var options = {};
+
+   	var player2 = videojs('my-player2', options, function onPlayerReady() {
+	    videojs.log('Your player is ready!');
+	    this.play();
+	    this.on('ended', function() {
+	       videojs.log('Awww...over so soon?!');
+	    });
+   	});
+   	
+	//库存面板表格
+	var kucun = echarts.init(document.getElementById("kucun"));
+	var bgImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAF+CAYAAADNzDlVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAilJREFUeNrs1rENwjAURdEfC0pmQAwBDfuwE8wDDSULIGagTGEcFNHQpfPXseT0V0ryzrA/XzcRsWt3HX2fsd1XSRITc8O2JIn5RZVIdsr87mU54xT0TBL1/Sms2uPd7qPXivvp+PfKpfuGBAkStPxMf7muLXe43FiO5ViO5VjOsAoSxHIsx3Isx3Isx3KGVZAglmM5lmM5lmM5liMFQYJYjuVYjuVYjuVYTpAgQSzHcizHcizHcoZVkCCWYzmWYzmWYzmWM6yCBLEcy7Ecy7Ecy7GcIEGCWI7lWI7lWI7lDKsgQYJYjuVYjuVYjuUMqyBBLMdyLMdyLMdyLGdYBQliOZZjOZZjOZZjOUGCBLEcy7Ecy7EcyxlWQYJYjuVYjuVYjuVYzrAKEsRyLMdyLMdyLMdypCBIEMuxHMuxHMuxnGEVJEgQy7Ecy7Ecy7GcYRUkiOVYjuVYjuVYjuUMqyBBLMdyLMdyLMdyLCdIkCCWYzmWYzmWYznDKkgQy7Ecy7Ecy7EcyxlWQYJYjuVYjuVYjuVYjhQECWI5lmM5lmM5ljOsggQJYjmWYzmWYzmWM6yCBLEcy7Ecy7Ecy7GcYRUkiOVYjuVYjuVYjuUECRLEcizHcizHcixnWAUJYjmWYzmWYzmWYznDKkgQy7Ecy7Ecy7Ecy5GCIEEsx3Isx3Isx3IsJ0iQIJZjOZZjOZZjOcMqSBDLsRzLsRzL9Wy5odZqhwQJWn4+AgwApGqd0LftHcgAAAAASUVORK5CYII=';
+	var fillImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAF+CAYAAADNzDlVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABFhJREFUeNrs3U+O1DgUgHHblUFzhb7GCCHNtnfMFUasOA9HYEWfAQlpZq6AEOIIdPcFZgMVe5L6Q6pLzQjFLZK2fpZSKbVioQ8n9b68+Dnxz39fXYYYrkIIF+Fxt5the5kagQkHhtepEZhvUCk01tLh3Gul3aZQwovxSwMwn8cfhW74+Lul66jJawgQIEB1QJfDdj1s5ZFvI8NzLsfluByX43KAlmzjKRdyTkYIEJeb6XK5JC7H5bhchculmLmcOASoAqjPGyMEiMtVuFyMhctxOS5X4XKlRC4nDgECBIjLLeVyXSnpqhQux+W43FyXi/Jy4hCgKqC+74wQIC5XkZdLKcvLcTkuV+FyOScuJw4Bmt/MlwPE5WprH4LaBy7H5WpcbvjgcuIQIECAuByXe0iXy4eJtOONXilx2NJh238PIYbpmPP9qvpc7O5YU+r351/KB9hyAl7C3WPO9+vqs3O5hkZocrn9H+PJwdP3Y87h/n9sNX24HKBFgLaesQLiclUul9Q+yMvJy1Xl5bLaB3EIUE3biVzvGSsgLjfb5Yb7ci7H5bhchcvFWLicOAQIECAux+W43P1QXcmpuWuotbyc2gdxCFBF29c+FHk5QFzOfDl5OS63jMsFtQ/iECBAgLgcl+Ny34PqcoMrot+cFkzEWIbtuN9/H0/R/yuyWFGf2zR8vBiLIHa5hTsFE3FGkcWifT4Pey63fqDt9hemsOYWSylGaM2t++P6zWUjS7KNuZGX1pdbO5S83Mqb9eXEIUC1gfV4r2GEAP08IHk5LsfluNzkcsEzVnEIULXLFS4HiMvNdrnh+uFyXI7LVbhcTN7hJQ4BqnU5eTlAXG6+y/XbjstxOS5X4XJ93nA5cQhQrcupYwXE5Wa7XLRWMJfjclUuV6wVLA4BAgSIyy3ncl0p6aoULsfluNxcl4vRM1ZxCBAgQFxuybWC25ov1+Wc2nK543tOj/tpeYxpOz9mzX3GERpd7uI4PWZcGuO8Hf82vSr07n5FfW7TZrPlcuIQoAqgL19+NUKAuFyFyw1xyDPWVbtci9dQY/Pl+o7LiUOA5rdD7cPGCAHicubLcTkut4jLmS8nDgF6CJdT+wCIy3kfK5fjcsu43HA/xOXEIUCVLnffhAYjBIjL/ZjLZevLcTkuV+Vyyfpy4hCgKqCvX58YIUBcbr7Lxd8/vb1u6Gf7hstxuZ/tcp6xikOAAAHicubLPYz2BHk5LsfluJzA+tja7hlrr/YBEJeb63Lx2cd38nJcjstVuFyyvpw4BAgQIC7H5bgcl3u0Lpd77/AShwBVNGuSAOJylS739MNf7blcSv1+uFI+LFmbT5avzbv/gOmY8/2q+lzc+ZWbqvZPK76OS9duvrNfV5/2XG4YMS4nDgECBIjLcbmHdLmGzjh5OS7H5cShxoGsLweIy1W63G/v/+FyXI7LVbic+XLiECBAgLgcl+NyXI7LrcXlYilFHAIEaH77T4ABAKzsRPWz+TQ7AAAAAElFTkSuQmCCgg';
+	var chartData = [
+	    {
+	        name: '矿粉[S95]',
+	        value: 100
+	    }, 
+	    {
+	        name: '沥青[70]',
+	        value: 70
+	    }, 
+	    {
+	        name: '石灰岩[3-5]',
+	        value: 61
+	    },
+	    {
+	        name: '石灰岩[25-31.5]',
+	        value: 46
+	    },
+	    {
+	        name: '石灰岩[5-15]',
+	        value: 50
+	    }, 
+	    {
+	        name: '玄武岩[5-10]',
+	        value: 34
+	    },
+	    {
+	        name: '玄武岩[10-15]',
+	        value: 46
+	    },
+	    {
+	        name: '石灰岩[0-3]',
+	        value: 140
+	    },
+	];
+	
+	var bgData = [];
+	var itemData = [];
+	
+	// 取出每一条数据value,作为显示数据
+	chartData.forEach(function(items, index) {
+	    itemData.push(items.value);
+	})
+	
+//	// 取出所有数据最大值,作为背景象形柱图数据
+	chartData.forEach(function(items, index) {
+	    bgData.push({
+	        name: items.name,
+	        value: Math.max.apply(null, itemData)
+	    });
+	})
+	// 所有数据最大值
+//	var maxValue = Math.max.apply(null, itemData);
+	
+	// 字体 distance放大参数
+	var scale = 0.7;
+	
+	//富文本配置
+	var rich = {
+	    white: {
+	        color: "#fff",
+	        align: 'left',
+	        fontSize: 18 * scale,
+	        padding: [0, 0]
+	    },
+	};
+	
+	var option = {
+		background:'#ffffff',
+	    tooltip:{
+	        formatter:'{b} : {c}',
+	    },
+	    grid: {
+	        left: '3%',
+	        right: '6%',
+	        bottom: '3%',
+	        containLabel: true
+	    },
+	    xAxis: [{
+	        type: 'category',
+	        data:(function(data){
+	            var arr=[];
+	            data.forEach(function(items){
+	                arr.push(items.name);   
+	            });
+	            return arr;
+	        })(chartData),
+	        boundaryGap: ['20%', '20%'],
+	        splitLine: {
+	            show: false
+	        },
+	        axisLine: {
+	            show: false
+	        },
+	        axisTick: {
+	            show: false
+	        },
+	        axisLabel: {
+	            textStyle: {
+	                fontSize: 16 * scale,
+	                color: '#3fdaff'
+	            },
+	            color:'#00CAB0'
+	        },
+	        grid:{
+					y1: '20px',
+					y2: '20px'
+		        },
+	    }],
+	    yAxis: [{
+			show:false,
+	    }],
+	    series: [
+	        //背景
+	         {
+	            name: 'bg',
+	            type: 'pictorialBar',
+	            barWidth: '45%',
+//	            barGap: '0%',
+	            silent: true,
+	            symbol: 'image://'+ bgImg,
+	            symbolClip:false,
+	            symbolBoundingData: 150,
+	            symbolSize: [80, '80%'],
+	            data: bgData
+	        },
+	        {
+	            name: '数据',
+	            type: 'pictorialBar',
+	            barWidth: '45%',
+	            barGap: '-100%',
+	            data: chartData,
+	            z: 5,
+	            symbol: 'image://'+ fillImg,
+	            symbolClip:true,
+	            symbolBoundingData: 150,
+	            symbolSize: [80, '180%']
+	        },
+	    ]
+	};
+	kucun.setOption(option)
+
+// 时间选择
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  laydate.render({
+	    elem: '#startTime',
+	    value:'2018-09-01'
+	  });
+	  
+	  laydate.render({
+	   elem: '#endTime',
+	   value:'2018-09-26'
+	  });
+	});
+	
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  laydate.render({
+	    elem: '#startTime1',
+	    value:'2018-09-01'
+	  });
+	  
+	  laydate.render({
+	   elem: '#endTime1',
+	   value:'2018-09-26'
+	  });
+	});
+		
+		
+	layui.use('table', function(){
+	  var table = layui.table;
+	  table.render({
+	    elem: '#test'
+	    ,url:'http://113.207.26.29:8080/jbz/api/data/ajaxList'
+	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
+	    ,cols: [[ 
+	      {field:'pbh', title: '材料类型',width:140}
+	      ,{field:'dateTime', title: '出料时间',width:140}
+	      ,{field:'one', title: '矿粉[S95]',width:140}
+	      ,{field:'two', title: '沥青[70]',width:140}
+	      ,{field:'three',  title: '石灰岩[3-5]',width:140}
+	      ,{field:'four', title: '石灰岩[25-31.5]',width:140 }
+	      ,{field:'five', title: '石灰岩[5-15]',width:140}
+	      ,{field:'six',  title: '玄武岩[5-10]',width:140}
+		  ,{field:'seven',  title: '玄武岩[10-15]',width:140}
+		  ,{field:'eight',  title: '石灰岩[0-3]',width:140}
+		  
+	    ]]
+	    ,page: true
+	    ,limit:10
+	    ,request: {
+		    pageName: 'page' //页码的参数名称，默认：page
+		    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+		   
+		}
+	    ,where:{
+	    	 beginDate:'2018-09-01'
+		    ,endDate:'2018-09-26'
+	    }
+	    , response: {
+            statusName: 'errno' //数据状态的字段名称，默认：code
+            , statusCode: 0 //成功的状态码，默认：0
+            , msgName: 'error' //状态信息的字段名称，默认：msg
+            , countName: 'num' //数据总数的字段名称，默认：count
+            , dataName: 'list' //数据列表的字段名称，默认：data
+        }
+		,even:true
+		
+	  });
+	});
+	
+	layui.use('table', function(){
+	  var table = layui.table;
+	  table.render({
+	    elem: '#test2'
+	    ,url:'http://113.207.26.29:8080/jbz/api/data/ajaxSCXHL'
+	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
+	    ,cols: [[ 
+	      {field:'pbh', title: '材料类型',width:140}
+	      ,{field:'dateTime', title: '出料时间',width:140}
+	      ,{field:'XFSL', title: '矿粉[S95]',width:140}
+	      ,{field:'LQSL', title: '沥青[70]',width:140}
+	      ,{field:'three',  title: '石灰岩[3-5]',width:140}
+	      ,{field:'four', title: '石灰岩[25-31.5]',width:140 }
+	      ,{field:'five', title: '石灰岩[5-15]',width:140}
+	      ,{field:'six',  title: '玄武岩[5-10]',width:140}
+		  ,{field:'seven',  title: '玄武岩[10-15]',width:140}
+		  ,{field:'eight',  title: '石灰岩[0-3]',width:140}
+	    ]]
+	    ,page: true
+	    ,limit:10
+	    ,request: {
+		    pageName: 'page' //页码的参数名称，默认：page
+		    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+		   
+		}
+	    ,where:{
+	    	 beginDate:'2018-09-01'
+		    ,endDate:'2018-09-26'
+	    }
+	    , response: {
+            statusName: 'errno' //数据状态的字段名称，默认：code
+            , statusCode: 0 //成功的状态码，默认：0
+            , msgName: 'error' //状态信息的字段名称，默认：msg
+            , countName: 'num' //数据总数的字段名称，默认：count
+            , dataName: 'list' //数据列表的字段名称，默认：data
+        }
+		,even:true
+		
+	  });
+	});
+</script>
+</body>
+</html>

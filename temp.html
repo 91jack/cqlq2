@@ -1,0 +1,371 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>重交沥青搅拌站智慧生产管控系统</title>
+<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css"/>
+<link rel="stylesheet" type="text/css" href="static/css/common.css" />
+</head>
+
+<body>
+	<div class="header clearfix">
+		<h2>重交沥青搅拌站智慧生产管控系统</h2>
+		<div class="nav">
+			<a href="index.html">
+				<img src="static/images/icon_home1.png" alt="" />
+				<span>首页</span>
+			</a>
+			<a href="weigh.html">
+				<img src="static/images/icon_chengzhong1.png" alt="" />
+				<span>称重过磅</span>
+			</a>
+			<a href="jiankong.html">
+				<img src="static/images/icon_jiankong1.png" alt="" />
+				<span>生产监控</span>
+			</a>
+			<a href="carmanage.html">
+				<img src="static/images/icon_car1.png" />
+				<span>车辆调度</span>
+			</a>
+
+			<a href="kucun.html">
+				<img src="static/images/icon_kucun1.png" alt="" />
+				<span>库存盘点</span>
+			</a>
+			<a href="monitor.html">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>视频监控</span>
+				</a>
+			<!--<a href="javascript:;">
+				<img src="static/images/icon_zhiliang1.png" alt="" />
+				<span>质量管控</span>
+			</a>
+			<a href="javascript:;">
+				<img src="static/images/icon_shiyan1.png" />
+				<span>实验管理</span>
+			</a>-->
+
+			<a id="tongji"  class="active">
+				<img src="static/images/icon_tongji2.png" />
+				<span>统计分析</span>
+			</a>
+			<ul class="subnav">
+				<li>
+					<a href="producestate.html">生产动态表</a>
+				</li>
+				<li>
+					<a href="producenum.html">生产量分析</a>
+				</li>
+				<li>
+					<a href="javascript:;">核算量分析</a>
+				</li>
+				<li>
+					<a href="xhl.html">消耗量分析</a>
+				</li>
+				<li>
+					<a href="temp.html">温度波动分析</a>
+				</li>
+				<li>
+					<a href="ysb.html">油石比波动分析</a>
+				</li>
+				<li>
+					<a href="yunju.html">运距统计分析</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="top-select">
+			<div class="cell title">
+				<a>温度波动分析</a>
+				<a href="javascript:;">立即下载</a>
+			</div>
+			<div class="cite cell">
+				<span class="fl">站点</span>
+				<ul class="fl">
+					<li>璧山站</li>
+						<li>两江站</li>
+						<li>万州站</li>
+				</ul>
+			</div>
+			<div class="cite cell">
+				<span class="fl">温度类型</span>
+				<ul class="fl">
+					<li>骨料温度</li>
+					<li>出料温度</li>
+					<li>再生温度</li>
+				</ul>
+			</div>
+			<div class="time-wrap cell">
+				<div class="start-time">
+				
+					<input type="text" id="startTime">
+				</div>
+				<div class="end-time">
+					
+					<input type="text" id="endTime">
+				</div>
+				<a href="javascript:;" class="time-btn">确定</a>
+			</div>
+			
+		</div>
+		<div class="col-2 fl">
+			<table class="layui-hide" id="test"></table>
+		</div>
+		<div class="col-2 fr">
+			<div class="chart" id="barChart"></div>
+		</div>
+	</div>
+		
+	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="static/js/common.js"></script>
+	<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+	<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		// 时间选择
+		var time = timeFn();
+		var startTime = time.y+'-'+(time.m-1)+'-'+time.d;
+		var endTime = time.y+'-'+time.m+'-'+time.d;
+		layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  laydate.render({
+		    elem: '#startTime',
+		    value:'2018-10-17'
+		  });
+		  
+		  laydate.render({
+		   elem: '#endTime',
+		   value:'2018-10-17'
+		  });
+		});
+		
+		var params = {
+		    	beginDate:$('#startTime').val() ,
+			   	endDate:$('#endTime').val()
+		    }
+		tableFn(params);
+		chartFn();
+		
+		$('.time-btn').click(function(){
+			params = {
+			    	beginDate:$('#startTime').val() ,
+				   	endDate:$('#endTime').val()
+			    }
+			tableFn(params);
+			chartFn();
+		})
+		
+		function tableFn(params){
+			layui.use('table', function(){
+			  var table = layui.table;
+			  table.render({
+			    elem: '#test'
+			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
+			    ,cols: [[ 
+			      {field:'outDate', title: '时间'}
+			      ,{field:'product', title: '材料类型'}
+			      ,{field:'out', title: '出料温度'}
+			    ]]
+			 	,data:[
+			    {
+			        "id":"5bc6af58179c9071ac931e5c",
+			        "out":158.2,
+			        "product":"AC13",
+			        "outDate":"2018-10-17 11:41:12",
+			        "siteId":"Y7KM5RSP135RDHM1921680199"
+			    },
+			    {
+			        "id":"5bc6af49179c9071ac931e5b",
+			        "out":150.4,
+			        "product":"AC13",
+			        "outDate":"2018-10-17 11:40:57",
+			        "siteId":"Y7KM5RSP135RDHM1921680199"
+			    },
+			    {
+			        "id":"5bc6af39179c9071ac931e5a",
+			        "out":152.1,
+			        "product":"AC13",
+			        "outDate":"2018-10-17 11:40:41",
+			        "siteId":"Y7KM5RSP135RDHM1921680199"
+			    },
+			    {
+			        "id":"5bc6af2a179c9071ac931e59",
+			        "out":153.8,
+			        "product":"AC13",
+			        "outDate":"2018-10-17 11:40:26",
+			        "siteId":"Y7KM5RSP135RDHM1921680199"
+			    },
+			    {
+			        "id":"5bc6af1b179c9071ac931e58",
+			        "out":154.8,
+			        "product":"AC13",
+			        "outDate":"2018-10-17 11:40:11",
+			        "siteId":"Y7KM5RSP135RDHM1921680199"
+			    },
+			    {
+			        "id":"5bc6af0b179c9071ac931e57",
+			        "out":159,
+			        "product":"AC13",
+			        "outDate":"2018-10-17 11:39:55",
+			        "siteId":"Y7KM5RSP135RDHM1921680199"
+			    },
+			    {
+			        "id":"5bc6aefc179c9071ac931e56",
+			        "out":162.5,
+			        "product":"AC13",
+			        "outDate":"2018-10-17 11:39:40",
+			        "siteId":"Y7KM5RSP135RDHM1921680199"
+			    },
+			]
+				,even:true
+				
+			  });
+			});
+		}
+		
+	//柱状图
+	function chartFn(){
+			var dataArr = [
+   
+    {
+        "id":"5bc6af58179c9071ac931e5c",
+        "out":158.2,
+        "product":"AC13",
+        "outDate":"2018-10-17 11:41:12",
+        "siteId":"Y7KM5RSP135RDHM1921680199"
+    },
+    {
+        "id":"5bc6af49179c9071ac931e5b",
+        "out":150.4,
+        "product":"AC13",
+        "outDate":"2018-10-17 11:40:57",
+        "siteId":"Y7KM5RSP135RDHM1921680199"
+    },
+    {
+        "id":"5bc6af39179c9071ac931e5a",
+        "out":152.1,
+        "product":"AC13",
+        "outDate":"2018-10-17 11:40:41",
+        "siteId":"Y7KM5RSP135RDHM1921680199"
+    },
+    {
+        "id":"5bc6af2a179c9071ac931e59",
+        "out":153.8,
+        "product":"AC13",
+        "outDate":"2018-10-17 11:40:26",
+        "siteId":"Y7KM5RSP135RDHM1921680199"
+    },
+    {
+        "id":"5bc6af1b179c9071ac931e58",
+        "out":154.8,
+        "product":"AC13",
+        "outDate":"2018-10-17 11:40:11",
+        "siteId":"Y7KM5RSP135RDHM1921680199"
+    },
+    {
+        "id":"5bc6af0b179c9071ac931e57",
+        "out":159,
+        "product":"AC13",
+        "outDate":"2018-10-17 11:39:55",
+        "siteId":"Y7KM5RSP135RDHM1921680199"
+    },
+    {
+        "id":"5bc6aefc179c9071ac931e56",
+        "out":162.5,
+        "product":"AC13",
+        "outDate":"2018-10-17 11:39:40",
+        "siteId":"Y7KM5RSP135RDHM1921680199"
+    },
+    
+]
+			var xData = dataArr.map(function(index,value){
+					return index.outDate;
+			})
+			var yData = dataArr.map(function(index,value){
+					return index.out;
+			})
+			var barChart = echarts.init(document.getElementById('barChart'));
+			var option = {
+				title:{
+					text:'温度波动分析',
+					 x: 'center',
+				},
+				grid: {
+					top: 30,
+					left: 40,
+					right:0,
+					bottom:'20%'
+				},
+				tooltip: {
+			        trigger: 'axis',  
+			    },
+				xAxis: {
+					type: 'category',
+					data: xData,
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+					axisLabel:{
+						rotate:15
+					}
+				},
+				yAxis: {
+					name:'温度（℃）',
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+				},
+				series: [{
+						name:'温度',
+						data:yData,
+						type: 'line',
+						itemStyle: {
+							color: '#00CAB0'
+						},
+						markLine: {
+			                data: [
+			                    {type: 'average', name: '平均值'}
+			                ],
+			                lineStyle:{
+			                	color:'red'
+			                }
+			            }
+					},
+		
+				]
+			};
+		
+			barChart.setOption(option);
+		
+	}
+	
+
+		
+	</script>
+	</body>
+
+</html>
