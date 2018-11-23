@@ -164,13 +164,8 @@
 									<th>沥青</th>
 								</tr>
 							</thead>
-							<tbody id="productList">
-								
-							</tbody>
+							<tbody id="productList"></tbody>
 						</table>
-						
-						
-					
 					</div>
 				</div>
 				<div class="section2-bottom-item fr">
@@ -185,11 +180,8 @@
 									<th>出货时间</th>
 								</tr>
 							</thead>
-							<tbody id="chuhuo">
-								
-							</tbody>
+							<tbody id="chuhuo"></tbody>
 						</table>
-
 					</div>
 				</div>
 			</div>
@@ -197,7 +189,7 @@
 
 		<div class="section3 fl">
 			<div class="section3-top1">
-				<h1 class="fl" style="margin-left: 1rem;">生产状态:&nbsp;<span>关机5小时</span></h1>
+				<h1 class="fl" style="margin-left: 1rem;">生产状态:&nbsp;<span id="produceState">关机5小时</span></h1>
 				<h1>生产材料:&nbsp;<span id="productName"></span></h1>
 			</div>
 			<div class="section3-top">
@@ -353,8 +345,6 @@ WebSocketFn(gpsUrl,function(data){
 			addMarker(point,icon,label,InfoWindow);
    		}
 	}
-	
-	
 });
 
 var xData1 = [];
@@ -502,7 +492,13 @@ WebSocketFn(weightUrl,function(data){
 	if(data.length>0){
    		for(var i=0;i<data.length;i++){
    			str +='<tr>'
-				+	'<td>'+data[i].xm+'</td>'
+				if(data[i].xm.length>6){
+					// 项目名长度超6 截取字符串
+					var xm = data[i].xm.substr(0,6);
+				}else{
+					var xm = data[i].xm;
+				}
+				str +='<td title="'+data[i].xm+'">'+xm+'</td>'
 				+	'<td>'+data[i].cph+'</td>'
 				+	'<td>'+data[i].jz+'</td>'
 				+	'<td>'+data[i].rcsj+'</td>'

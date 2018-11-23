@@ -217,28 +217,34 @@
 var kucun = echarts.init(document.getElementById("kucun"));
 	
 var data = [{
-    "name": "库1",
+    "name": "石灰石0-5",
     "value": 800
 }, {
-    "name": "库2",
+    "name": "石灰石5-10",
     "value": 87.8
 }, {
-    "name": "库3",
+    "name": "石灰石10-20",
     "value": 71
 }, {
-    "name": "库4",
+    "name": "石灰石20-30",
     "value": 80
 }, {
-    "name": "库5",
+    "name": "花岗石10-15",
     "value": 606
 }, {
-    "name": "库6",
+    "name": "玄武岩-10-15",
     "value": 80
 }, {
-    "name": "库7",
+    "name": "矿粉",
     "value": 180,
 }, {
-		"name": "库8",
+		"name": "回收料",
+		"value": 100
+}, {
+		"name": "沥青70号",
+		"value": 100
+}, {
+		"name": "SBS沥青",
 		"value": 100
 }];
 
@@ -436,17 +442,18 @@ data.map(function(a, b) {
 	    ,url:'http://113.207.26.29:8080/jbz/api/data/ajaxList'
 	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 	    ,cols: [[ 
-	      {field:'pbh', title: '材料类型',width:140}
-	      ,{field:'dateTime', title: '出料时间',width:140}
-	      ,{field:'one', title: '矿粉[S95]',width:140}
-	      ,{field:'two', title: '沥青[70]',width:140}
-	      ,{field:'three',  title: '石灰岩[3-5]',width:140}
-	      ,{field:'four', title: '石灰岩[25-31.5]',width:140 }
-	      ,{field:'five', title: '石灰岩[5-15]',width:140}
-	      ,{field:'six',  title: '玄武岩[5-10]',width:140}
-		  ,{field:'seven',  title: '玄武岩[10-15]',width:140}
-		  ,{field:'eight',  title: '石灰岩[0-3]',width:140}
-		  
+	      {field:'pbh', title: '材料类型',width:100}
+	      ,{field:'dateTime', title: '出料时间',width:100}
+	      ,{field:'one', title: '石灰石[0-5]',width:100}
+	      ,{field:'two', title: '石灰石[5-10]',width:120}
+	      ,{field:'three',  title: '石灰石[10-20]',width:120}
+	      ,{field:'four', title: '石灰石[20-30]',width:120 }
+	      ,{field:'five', title: '花岗石[10-15]',width:120}
+	      ,{field:'six',  title: '玄武岩[10-15]',width:120}
+	      ,{field:'seven',  title: '矿粉',width:100}
+	      ,{field:'eight',  title: '回收料',width:100}
+	      ,{field:'seven',  title: '沥青70号',width:100}
+	      ,{field:'eight',  title: 'SBS沥青',width:100}
 	    ]]
 	    ,page: true
 	    ,limit:10
@@ -478,16 +485,18 @@ data.map(function(a, b) {
 	    ,url:'http://113.207.26.29:8080/jbz/api/data/ajaxSCXHL'
 	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 	    ,cols: [[ 
-	      {field:'pbh', title: '材料类型',width:140}
-	      ,{field:'dateTime', title: '出料时间',width:140}
-	      ,{field:'XFSL', title: '矿粉[S95]',width:140}
-	      ,{field:'LQSL', title: '沥青[70]',width:140}
-	      ,{field:'three',  title: '石灰岩[3-5]',width:140}
-	      ,{field:'four', title: '石灰岩[25-31.5]',width:140 }
-	      ,{field:'five', title: '石灰岩[5-15]',width:140}
-	      ,{field:'six',  title: '玄武岩[5-10]',width:140}
-		  ,{field:'seven',  title: '玄武岩[10-15]',width:140}
-		  ,{field:'eight',  title: '石灰岩[0-3]',width:140}
+	     {field:'pbh', title: '材料类型',width:100}
+	     ,{field:'dateTime', title: '出料时间',width:100}
+	     ,{field:'one', title: '石灰石[0-5]',width:100}
+	     ,{field:'two', title: '石灰石[5-10]',width:120}
+	     ,{field:'three',  title: '石灰石[10-20]',width:120}
+	     ,{field:'four', title: '石灰石[20-30]',width:120 }
+	     ,{field:'five', title: '花岗石[10-15]',width:120}
+	     ,{field:'six',  title: '玄武岩[10-15]',width:120}
+	     ,{field:'seven',  title: '矿粉',width:100}
+	     ,{field:'eight',  title: '回收料',width:100}
+	     ,{field:'seven',  title: '沥青70号',width:100}
+	     ,{field:'eight',  title: 'SBS沥青',width:100}
 	    ]]
 	    ,page: true
 	    ,limit:10

@@ -12,7 +12,7 @@
 	</head>
 
 	<body>
-				<div class="header clearfix">
+		<div class="header clearfix">
 			<h2>重交沥青搅拌站智慧生产管控系统</h2>
 			<div class="nav">
 				<a href="index.html">
@@ -40,15 +40,6 @@
 					<img src="static/images/icon_zhiliang1.png" alt="" />
 					<span>视频监控</span>
 				</a>
-				<!--<a href="javascript:;">
-					<img src="static/images/icon_zhiliang1.png" alt="" />
-					<span>质量管控</span>
-				</a>
-				<a href="javascript:;">
-					<img src="static/images/icon_shiyan1.png" />
-					<span>实验管理</span>
-				</a>-->
-
 				<a id="tongji">
 					<img src="static/images/icon_tongji1.png" />
 					<span>统计分析</span>
@@ -173,9 +164,6 @@
 				});
 			});
 			
-			
-
-
 			var productList=[];
 			// 生产实时数据	
 			WebSocketFn(productUrl, function(data) {
